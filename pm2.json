@@ -1,0 +1,11 @@
+{
+  "apps" : [
+    {
+      "name": "panelais-models-api-api",
+      "interpreter": "/bin/bash",
+      "script": "launch.sh",
+      "out_file": "/var/log/panelais-models-api-api.log",
+      "error_file": "/var/log/panelais-models-api-api.err"
+    }
+  ]
+}
