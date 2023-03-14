@@ -8,7 +8,7 @@ on:
 
 
 env:
-  DOCKER_IMAGE: gandalfran/panelais-models-api-api
+  DOCKER_IMAGE: gandalfran/panelais-api
 
 
 jobs:
