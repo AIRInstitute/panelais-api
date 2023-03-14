@@ -1,29 +1,18 @@
 {
 	"info": {
-		"_postman_id": "3cfa26f6-ba4f-4db6-83c6-836b2e2f33e9",
+		"_postman_id": "c0434eb9-6a4f-45d6-9d3e-d67344ba5e81",
 		"name": "panelais-models-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8119529"
+		"_exporter_id": "8653696"
 	},
 	"item": [
 		{
-			"name": "image",
+			"name": "modelL1",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "picture",
-							"type": "file",
-							"src": [],
-							"disabled": true
-						}
-					]
-				},
 				"url": {
-					"raw": "http://localhost:5000/panelais-models-api/v1/model/predict",
+					"raw": "http://localhost:5000/panelais-models-api/v1/model/l1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -33,7 +22,29 @@
 						"panelais-models-api",
 						"v1",
 						"model",
-						"predict"
+						"l1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modelL2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/panelais-models-api/v1/model/l2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"panelais-models-api",
+						"v1",
+						"model",
+						"l2"
 					]
 				}
 			},

@@ -9,7 +9,7 @@ from flask_cors import CORS
 from panelais_models_api import config
 from panelais_models_api.api import namespaces
 from panelais_models_api.api.v1 import api
-from panelais_models_api.core import limiter
+from panelais_models_api.core import cache, limiter
 
 app = Flask(__name__)
 
@@ -57,6 +57,7 @@ def initialize_app(flask_app):
     api.init_app(v1)
 
     limiter.exempt(v1)
+    cache.init_app(flask_app)
     flask_app.register_blueprint(v1)
     flask_app.config.from_object(config)
 

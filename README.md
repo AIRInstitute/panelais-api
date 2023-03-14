@@ -46,15 +46,15 @@ sudo pm2 start pm2.json
 Application can be also deployed with docker. For that purpose, first build and push the application:
 
 ```bash
-docker build . -t gandalfran/panelais-models-api-api
-docker push gandalfran/panelais-models-api-api
+docker build . -t <your dockerhub user>/panelais-api
+docker push <your dockerhub user>/panelais-api
 ```
 
 Then in the enviroment where application must be deplolyed, pull changes and deploy:
 
 ```bash
-docker pull gandalfran/panelais-models-api-api
-docker run -p 5000:<your-published-port> gandalfran/panelais-models-api-api
+docker pull <your dockerhub user>/panelais-api
+docker run -p 5000:<your-published-port> <your dockerhub user>/panelais-api
 ```
 
 ## Automatic Deployment

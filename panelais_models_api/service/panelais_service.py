@@ -4,97 +4,72 @@
 # Author: Francisco Pinto-Santos (@GandalFran on GitHub)
 
 
+import base64
+import os
+
 from panelais_models_api import logger
-from werkzeug.datastructures import FileStorage
+from panelais_models_api.model import PanelaisL1Model, PanelaisL2Model
 
 
 class PanelaisModelsService:
     """Loads the model and perform predictions over it.
-
-    Also maps results of the model
     """
 
-    def __init__(self, model_path: str) -> None:
+    def __init__(self, data_base_path: str, l1_file='ProdL1.csv', l2_file='ProdL2.csv') -> None:
         """
         Args:
-            model_path: the path of the pickle file where model is located
+            data_base_path: the path of the base data for model
         """
 
-        self.model = self._load_model(model_path=model_path)
+        self.l1, self.l2 = None, None
+        self._load_models(data_base_path=data_base_path, l1_file=l1_file, l2_file=l2_file)
 
-    def _load_model(self, model_path: str
-                    ) -> None:
-        """Loads the model into memory
+    def _load_models(self, data_base_path: str, l1_file: str, l2_file: str
+                     ) -> None:
+        """Loads the models and data
 
         Args:
-            model_path: the file system path where model is located
-
-        Returns:
-            the model path
+            data_base_path: the base path where model files are located
         """
 
         logger.info('loading model')
 
-        # model = keras.models.load_model(model_path)
+        l1_path = os.path.join(data_base_path, l1_file)
+        l2_path = os.path.join(data_base_path, l2_file)
+
+        self.l1 = PanelaisL1Model(data_path=l1_path)
+        self.l2 = PanelaisL2Model(data_path=l2_path)
 
         logger.info('model loaded sucessfully')
 
-        return None
-
-    def _map_categories(self, model_output: int
-                        ) -> str:
-        """Maps the categories between the model output (int) and the desired result (str)
-
-        Args:
-            model_output: the output of the model
+    def predictl1(self) -> str:
+        """Runs L1 model
 
         Returns:
-            the output
+            the picture generated as result of L1 model
         """
-
-        mappings = {
-            0: '1', 1: '2', 2: '3'
-        }
-
-        if model_output not in mappings:
-            logger.warning(f'trying to map model output with value of {model_output}')
-            raise ValueError('The model output does not fit within the available mappings')
-
-        mapping = mappings[model_output]
-
-        return mapping
-
-    def classify(self, picture: FileStorage
-                 ) -> str:
-        """Predicts the picture
-
-        Args:
-            picture: the picture containing a classification item
-
-        Returns:
-            the picture type
-        """
-
-        logger.info('loading image')
-
-        # load image with pillow and transform it into an array
-        # img = Image.open(picture).resize((150, 150))
-        # img_data = np.asarray(img)
-        # img_data = np.expand_dims(img_data, axis=0)
 
         logger.info('applying model')
 
-        # apply model
-        # model_output = self.model.predict(img_data)
-        model_output = None
-
-        logger.debug(f'resulting model {model_output}')
-        logger.info('mapping categories')
-
-        # map categories
-        # model_output = np.argmax(model_output)
-        result = self._map_categories(model_output=0)
+        image = self.l1.run()
+        encoded_image = base64.b64encode(image).decode('utf-8')
 
         logger.info('prediction finished successfully')
 
-        return result
+        return encoded_image
+
+    def predictl2(self) -> str:
+        """Runs L2 model
+
+        Returns:
+            the picture generated as result of L2 model
+        """
+
+        logger.info('applying model')
+
+        image = self.l2.run()
+        encoded_image = base64.b64encode(image).decode('utf-8')
+
+        logger.info('prediction finished successfully')
+
+        return encoded_image

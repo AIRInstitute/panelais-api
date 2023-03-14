@@ -1,7 +1,7 @@
 FROM python:3.8
 
 # define enviromente variables
-ENV MODEL_PATH ./model
+ENV DATA_PATH ./data
 
 # Add source files
 
