@@ -1,0 +1,20 @@
+name: Docker compose deploy
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  check_out:
+    name: check out
+    runs-on: [self-hosted, linux, x64]  
+    steps:
+     - uses: actions/checkout@v1
+  docker_compose:
+    name: docker compose
+    needs: check_out
+    runs-on: [self-hosted, linux, x64]
+    steps:
+    - name: Build the docker-compose
+      run: sudo docker compose -f "docker-compose.yml" up -d --build
