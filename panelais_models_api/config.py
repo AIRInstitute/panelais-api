@@ -13,4 +13,4 @@ URL_PREFIX = '/panelais-models-api/v1'
 DEBUG_MODE = False
 
 # model path config
-DATA_PATH = os.getenv('DATA_PATH', default='./data')
+DATA_PATH = os.getenv('DATA_PATH', default='/data')
