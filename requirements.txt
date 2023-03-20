@@ -9,6 +9,6 @@ pandas>=1.5.3
 plotly>=5.13.1
 requests>=2.23.0
 setuptools>=41.1.0
-sklearn
+scikit-learn
 Werkzeug>=1.0.1
 scikit-learn
