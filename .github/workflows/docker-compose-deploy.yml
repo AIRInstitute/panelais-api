@@ -17,4 +17,4 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     steps:
     - name: Build the docker-compose
-      run: sudo docker run -p 5000:5000 -v /home/Refractor/https/:/home -d gandalfran/panelais-api:latest
+      run: sudo docker run -p 5000:5000 -v /home/Refactor/https/:/home -d gandalfran/panelais-api:latest
