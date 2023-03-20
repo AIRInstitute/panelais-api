@@ -19,4 +19,4 @@ jobs:
     - name: Build the image
       run: sudo docker build -t panelais/docker .
     - name: Build the docker-compose
-      run: sudo docker run -p 5000:5000 -v /home/Refactor/https/:/home -v /home/data/:/data -d panelais/docker
+      run: sudo docker run -p 5000:5000 -v /home/Refactor/https/:/home -v /home/data/:/app/data -d panelais/docker
