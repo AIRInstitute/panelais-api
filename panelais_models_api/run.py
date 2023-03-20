@@ -76,7 +76,7 @@ def main():
     print(f'Version: {get_version()}')
     print(f'Base URL: http://localhost:{config.PORT}{config.URL_PREFIX}')
     print(separator_str)
-    context = ('/home/cert.pem', '/home/key.pem')
+    context = ('/home/cert.pem', '/home/key2.pem')
     app.run(host=config.HOST, port=config.PORT, ssl_context=context, debug=config.DEBUG_MODE)
 
 
