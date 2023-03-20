@@ -11,9 +11,9 @@ import plotly.io as pio
 from typing import Any
 import plotly.graph_objs as go
 from plotly.offline import iplot
-from scikit-learn.decomposition import PCA
-from scikit-learn.cluster import KMeans
-from scikit-learn.preprocessing import MinMaxScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
 
 
 class PanelaisL1Model:
