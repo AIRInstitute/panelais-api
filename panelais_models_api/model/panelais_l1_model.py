@@ -45,7 +45,7 @@ class PanelaisL1Model:
         columns = [5,6,21,22,33,39]
         for i in range(44, 79):
             columns.append(i)
-        Prod1 = Prod1.drop(columns=Prod1.columns[columns], axis = 1)
+        Prod1 = Prod1.drop(columns=Prod1.columns[columns+27], axis = 1)
         Prod1 = Prod1.fillna(method='bfill', axis=0)
 
         #Preprocesado de los datos
